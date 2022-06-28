@@ -33,3 +33,18 @@ Load traffic data as table
     # convertimos el json a un objeto tabla
     ${table}=    Create Table    ${json}[value]
     [Return]    ${table}
+
+
+Filter and sort traffic data
+    [Arguments]    ${table}
+    # nombre_variables    asigar a:    header_columna_csv    
+    ${max_rate}=    Set Variable    ${5.0}
+    ${rate_key}=    Set Variable    NumericValue
+    ${gender_key}=    Set Variable    Dim1
+    ${both_genders}=    Set Variable    BTSX
+    ${year_key}=    Set Variable    TimeDim
+
+    Filter Table By Column    ${table}    ${rate_key}    <    ${max_rate}
+    Filter Table By Column    ${table}    ${gender_key}    ==    ${both_genders}
+    Sort Table By Column    ${table}    ${year_key}    False
+    [Return]    ${table}
