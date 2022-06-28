@@ -17,7 +17,9 @@ ${TRAFFIC_JSON_FILE_PATH}=      ${OUTPUT_DIR}${/}traffic.json
 Produce traffic data work items
     Download traffic data
     ${traffic_data}=    Load traffic data as table
-    Write table to CSV    ${traffic_data}    test.csv
+    ${filtered_data}=    Filter and sort traffic data    ${traffic_data}
+
+    # Write table to CSV    ${traffic_data}    test.csv
 
 
 *** Keywords ***
